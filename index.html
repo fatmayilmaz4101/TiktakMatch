@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN for social media icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="https://raw.githubusercontent.com/fatmayilmaz4101/TiktakMatch/main/heart-white.ico" type="png">
+    <link rel="icon" href="heart-cropped.svg" type="image/svg+xml">
+    <!-- PNG fallbacks -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -90,12 +92,15 @@
     <header class="py-6 fixed w-full top-0 z-10 bg-gray-900 bg-opacity-90 backdrop-blur-sm">
         <div class="container flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15H9V9h2v8zm4 0h-2V9h2v8z"/>
-                </svg>
+
+            <svg class="w-8 h-8 text-gray-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <image href="logo-black.svg" width="30" height="30" />
+            </svg>
+
                 <span class="text-xl font-bold text-gray-100">Tiktak Match</span>
             </div>
             <nav class="hidden md:flex space-x-8">
+                <a href="https://forms.gle/5CjPtW1Zo2Z5RGvX7" class="hover:text-pink-500 transition duration-300">Gelişmelerden Haberdar Ol!</a>
                 <a href="#about" class="hover:text-pink-500 transition duration-300">Hakkımızda</a>
                 <a href="#features" class="hover:text-purple-500 transition duration-300">Özellikler</a>
                 <a href="#party" class="hover:text-pink-500 transition duration-300">Parti</a>
@@ -194,7 +199,7 @@
                 Tiktak Match deneyimini yaşamak için çok az kaldı. Gelişmelerden haberdar olmak ve özel partilere katılma şansı yakalamak için bizi takip edin.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="https://instagram.com/tiktokmatch" class="text-gray-400 hover:text-pink-500 transition duration-300 flex items-center space-x-2">
+                <a href="https://instagram.com/tiktakmatch" class="text-gray-400 hover:text-pink-500 transition duration-300 flex items-center space-x-2">
                     <i class="fab fa-instagram text-xl"></i>
                     <span>Instagram</span>
                 </a>
@@ -204,7 +209,7 @@
                 </a>
                 <a href="#" class="text-gray-400 hover:text-pink-500 transition duration-300 flex items-center space-x-2">
                     <i class="fas fa-envelope text-xl"></i>
-                    <span>tiktakmatch@gmail.com</span>
+                    <span>info@tiktakmatch.com</span>
                 </a>
             </div>
         </div>
