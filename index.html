@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiktak Match - Eşleşmenin Yeni Adresi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;600;700&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://placehold.co/32x32/FF69B4/FFFFFF?text=Logo" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Changa', sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+        }
+        .main-title {
+            font-family: 'Kaushan Script', cursive;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #ff4c8c, #8c4cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(90deg, #ff4c8c, #8c4cff);
+            transition: transform 0.3s ease-in-out;
+        }
+        .btn-gradient:hover {
+            transform: scale(1.05);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        /* Animasyon için gerekli CSS sınıfları */
+        .char {
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .char.visible {
+            opacity: 1;
+        }
+        .animated-text-container {
+            display: inline-block;
+        }
+        
+        /* Alternatif tasarım için özel stiller */
+        .glowing-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem; /* rounded-3xl */
+        }
+        .glowing-container::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(45deg, #ff4c8c, #8c4cff, #ff4c8c, #8c4cff);
+            background-size: 400% 400%;
+            animation: glowing 8s linear infinite;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.7;
+            border-radius: 1.5rem;
+        }
+        @keyframes glowing {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Header Section -->
+    <header class="py-6 fixed w-full top-0 z-10 bg-gray-900 bg-opacity-90 backdrop-blur-sm">
+        <div class="container flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg class="w-6 h-6 text-gray-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15H9V9h2v8zm4 0h-2V9h2v8z"/>
+                </svg>
+                <span class="text-xl font-bold text-gray-100">Tiktak Match</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-pink-500 transition duration-300">Hakkımızda</a>
+                <a href="#features" class="hover:text-purple-500 transition duration-300">Özellikler</a>
+                <a href="#party" class="hover:text-pink-500 transition duration-300">Parti</a>
+                <a href="#yakinda" class="hover:text-purple-500 transition duration-300">Yakında</a>
+            </nav>
+            <button id="menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-sm shadow-lg py-4">
+            <a href="#about" class="block py-2 px-4 text-center hover:bg-gray-800">Hakkımızda</a>
+            <a href="#features" class="block py-2 px-4 text-center hover:bg-gray-800">Özellikler</a>
+            <a href="#party" class="block py-2 px-4 text-center hover:bg-gray-800">Parti</a>
+            <a href="#yakinda" class="block py-2 px-4 text-center hover:bg-gray-800">Yakında</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="min-h-screen flex items-center justify-center text-center pt-24">
+        <div class="container space-y-8">
+            <p class="text-xl md:text-2xl font-semibold text-pink-400 tracking-wider mb-2">YAKINDA GELİYOR</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-50 leading-tight main-title">
+                <div id="animated-text-container" class="animated-text-container"></div><br>
+                <span id="static-text" class="text-gradient opacity-0 transition-opacity duration-700">Yeni Yolu</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+                Tiktak Match, sıradan buluşma uygulamalarından farklı olarak sizi sosyal gruplara ve unutulmaz partilere davet ediyor.
+            </p>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-4">Ne Yapıyoruz?</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto mb-12">
+                Tiktak Match, sadece bir buluşma uygulaması değil, aynı zamanda canlı bir topluluk platformudur. Eşleşmelerinizi sanal dünyadan gerçek dünyaya taşıyarak unutulmaz anılar biriktirmenizi sağlar.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card">
+                    <!-- Updated Group Chat Icon -->
+                    <i class="fas fa-users w-6 h-6 mx-auto mb-4 text-pink-500 text-3xl"></i>
+                    <h3 class="text-2xl font-bold mb-2">Grup Sohbetleri</h3>
+                    <p class="text-gray-400">Ortak ilgi alanlarına sahip gruplara katılarak yeni insanlarla tanışın ve sohbet edin.</p>
+                </div>
+                <div class="card">
+                    <!-- Updated Scoring System Icon -->
+                    <i class="fas fa-trophy w-6 h-6 mx-auto mb-4 text-purple-500 text-3xl"></i>
+                    <h3 class="text-2xl font-bold mb-2">Puanlama Sistemi</h3>
+                    <p class="text-gray-400">Görevleri tamamlayarak ve sohbetlerde puan toplayarak parti davetiyenizi kazanın.</p>
+                </div>
+                <div class="card">
+                    <!-- Updated Equal Participation Icon -->
+                    <i class="fas fa-balance-scale w-6 h-6 mx-auto mb-4 text-pink-500 text-3xl"></i>
+                    <h3 class="text-2xl font-bold mb-2">Eşit Katılım</h3>
+                    <p class="text-gray-400">Partilerimize eşit sayıda kız ve erkek katılımı sağlayarak adil bir ortam sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Party Section -->
+    <section id="party" class="py-20 bg-gray-800">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-4">Partiye Hazır Ol</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto mb-12">
+                Türkiye'nin farklı noktalarında her 3 ayda bir sizin oylamalarınızla düzenlediğimiz, House, Pijama, Rap & Pop, Tekne ve 90'lar gibi birbirinden farklı konsept partilerle tanışmaya hazır olun. Bu geceler, sadece müzik ve danstan ibaret değil; aynı zamanda yeni insanlarla tanışma, farklı kültürleri deneyimleme ve kendi yaratıcılığınızı sergileme fırsatı sunuyor.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+                <div class="flex-1 text-center space-y-4">
+                    <div class="flex items-center justify-center space-x-4">
+                        <span class="text-2xl text-gradient font-bold">1.</span>
+                        <p class="text-gray-300">Uygulama içinde gruplara katılın ve görevleri tamamlayın.</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span class="text-2xl text-gradient font-bold">2.</span>
+                        <p class="text-gray-300">Puanınız 85 ve üzerine çıktığında partiye davetiye kazanın.</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span class="text-2xl text-gradient font-bold">3.</span>
+                        <p class="text-gray-300">Partideki özel formları doldurarak en iyi eşleşmenizi bulun.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yakında Geliyor Section -->
+    <section id="yakinda" class="py-20 text-center">
+        <div class="container space-y-8">
+            <h2 class="text-4xl font-bold">Uygulamamız Yakında Geliyor!</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">
+                Tiktak Match deneyimini yaşamak için çok az kaldı. Gelişmelerden haberdar olmak ve özel partilere katılma şansı yakalamak için bizi takip edin.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="https://instagram.com/tiktokmatch" class="text-gray-400 hover:text-pink-500 transition duration-300 flex items-center space-x-2">
+                    <i class="fab fa-instagram text-xl"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.tiktok.com/tiktakmatch" class="text-gray-400 hover:text-purple-500 transition duration-300 flex items-center space-x-2">
+                    <i class="fab fa-tiktok text-xl"></i>
+                    <span>TikTok</span>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-pink-500 transition duration-300 flex items-center space-x-2">
+                    <i class="fas fa-envelope text-xl"></i>
+                    <span>tiktakmatch@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center bg-gray-900 border-t border-gray-700">
+        <div class="container space-y-4">
+            <p class="text-gray-500 text-sm">&copy; 2025 Tiktak Match. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Metin animasyonunu yöneten kısım
+        window.onload = function() {
+            const textToAnimate = "Eşleşmenin";
+            const animatedContainer = document.getElementById('animated-text-container');
+            const staticText = document.getElementById('static-text');
+
+            // Metni harf harf bölerek span oluştur
+            textToAnimate.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.classList.add('char');
+                animatedContainer.appendChild(span);
+            });
+
+            // Harfleri sırayla görünür yap
+            const chars = document.querySelectorAll('.char');
+            let delay = 1000; // İlk harf için gecikme
+            
+            chars.forEach((char, index) => {
+                setTimeout(() => {
+                    char.classList.add('visible');
+                }, delay + (index * 100)); // Her harf için 100ms'lik gecikme ekle
+            });
+
+            // Tüm harfler yazıldıktan sonra ikinci kelimeyi göster
+            const totalAnimationTime = delay + (chars.length * 100);
+            setTimeout(() => {
+                staticText.classList.remove('opacity-0');
+            }, totalAnimationTime + 200); // 200ms ek gecikme
+        };
+    </script>
+
+</body>
+</html>
